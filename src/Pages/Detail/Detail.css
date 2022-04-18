@@ -1,0 +1,40 @@
+.container {
+    width: 1000px;
+    background-color: #ddd;
+}
+.product-details {
+    width: 520px;
+    margin: 0 auto;
+}
+.image-wrapper {
+    display: flex;
+    position: relative;
+    border-radius: 10px;
+}
+.product-image  {
+    width: 120px;
+    height: 140px;
+    border-radius: 10px;
+}
+.title {
+    border-top: 3px solid #727573;
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+.description {
+    font-size: 13px;
+    color: #a19f9c;
+    font-family: "Times New Roman", Times, serif;
+}
+.product-name {
+    margin-left: 25px;
+    font-weight: bold;
+    font-size: 15px;
+}
+.product-price {
+    margin-left: 25px;
+    font-weight: bold;
+    position: absolute;
+    bottom: 0;
+}
