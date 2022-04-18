@@ -9,6 +9,7 @@ function Home() {
     let navigate = useNavigate();
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
+    const [search, setSearch] = useState("");
     const [categoryName, setCategoryName] = useState("Categories");
     
     useEffect(() => {
@@ -42,10 +43,10 @@ function Home() {
         setCategoryName(event.target.value);
     };
 
-    const searchInput = (e) => {
-        setFilteredProducts(products.filter(item => item.name.includes(e.target.value)));
-    }  
-    
+    const searchInput = (event) => {
+        setSearch(event.target.value);
+    }
+     
     return (
         <div className="container p-4">
            <Header />
@@ -57,7 +58,15 @@ function Home() {
             <div className='product'>
                 <ul className="grid grid-cols-4 gap-4">
                     {
-                        categoryName !== "Categories" ? filteredProducts.map(product =>
+                        categoryName !== "Categories" ? filteredProducts.filter(item => {
+                            if(item.name.toLowerCase().includes(search.toLowerCase())) {
+                                return item;
+                            } else if(search === ""){
+                                return item;
+                            } else {
+                                return null;
+                            }
+                        }).map(product =>
                             <li key={product.id}>
                                 <button className='remove' onClick={() => removeProduct(product.id)}><h5 className='text-white'>Remove</h5></button>
                                 <Link to={`/detail/${product.id}`}>
@@ -67,7 +76,15 @@ function Home() {
                                 </Link>
                                 <div className='product-name'>{product.name}</div>
                                 <div className='price'>${product.price}</div>
-                            </li>) : products.map(product =>
+                            </li>) : products.filter(item => {
+                                if(item.name.toLowerCase().includes(search.toLowerCase())) {
+                                    return item;
+                                } else if(search === ""){
+                                    return item;
+                                } else {
+                                    return null;
+                                }
+                            }).map(product => 
                             <li key={product.id}>
                                 <button className='remove' onClick={() => removeProduct(product.id)}><h5 className='text-white'>Remove</h5></button>
                                 <Link to={`/detail/${product.id}`}>
